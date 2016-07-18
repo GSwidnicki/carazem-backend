@@ -3,4 +3,5 @@
 target
 *.DS_Store*
 node_modules
+*.log
 frontend/bundle.js
