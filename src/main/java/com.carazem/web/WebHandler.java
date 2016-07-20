@@ -12,6 +12,7 @@ import java.util.NoSuchElementException;
 
 import static java.util.stream.Collectors.toList;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @ControllerAdvice
@@ -22,12 +23,6 @@ public class WebHandler {
     @ResponseStatus(NOT_FOUND)
     public String serviceNoValuePresent() {
         return "Error. 404 not found";
-    }
-
-    @ExceptionHandler(Exception.class)
-    @ResponseBody
-    public String serviceAnyException() {
-        return "Error. Contact support";
     }
 
     @ExceptionHandler(BindException.class)
@@ -47,5 +42,13 @@ public class WebHandler {
               .stream()
               .map(e->e.getCode())
               .collect(toList());
+    }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseBody
+    @ResponseStatus(INTERNAL_SERVER_ERROR)
+    public String serviceAnyException(Exception e) {
+        e.printStackTrace();
+        return "Error. Contact support";
     }
 }
