@@ -19,9 +19,6 @@ public class IndexController {
     @Autowired
     ConfigService configService;
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
     @RequestMapping("/")
     public String home() {
         System.out.println(configService.get(Keys.SERVER_PORT));
