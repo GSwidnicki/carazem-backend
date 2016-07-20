@@ -17,7 +17,7 @@ public class IndexController {
     @RequestMapping("/")
     public String home() {
         System.out.println(configService.get(Keys.SERVER_PORT));
-        return "Hello World!";
+        return "Dziala backend!";
     }
 
 }

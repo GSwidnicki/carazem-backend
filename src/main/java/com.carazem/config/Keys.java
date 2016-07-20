@@ -10,4 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class Keys {
 
     public static final String SERVER_PORT = "server.port";
+    public static final String DB_URL = "db.url";
+    public static final String DB_USER = "db.user";
+    public static final String DB_PASSWORD = "db.password";
 }
