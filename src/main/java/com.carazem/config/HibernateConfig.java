@@ -1,40 +1,72 @@
 package com.carazem.config;
 
+import com.carazem.config.ConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@PropertySource("classpath:application.properties")
+@EnableJpaRepositories(basePackages = "com.carazem")
+//@PropertySource("classpath:application.properties")
 public class HibernateConfig {
 
     @Autowired
-    private Environment environment;
+    ConfigService configService;
 
     @Bean
     public DataSource dataSource() {
 
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driver.class.name"));
-        dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
-        dataSource.setUsername(environment.getRequiredProperty("jdbc.user.name"));
-        dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
+        dataSource.setDriverClassName(configService.get(Keys.DB_DRIVER));
+        dataSource.setUrl(configService.get(Keys.DB_URL));
+        dataSource.setUsername(configService.get(Keys.DB_USER));
+        dataSource.setPassword(configService.get(Keys.DB_PASSWORD));
         return dataSource;
+    }
+
+    @Bean
+    public EntityManagerFactory entityManagerFactory() {
+        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+
+        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+        entityManagerFactoryBean.setDataSource(dataSource());
+        entityManagerFactoryBean.setPackagesToScan("com.carazem");
+        entityManagerFactoryBean.setJpaProperties(hibernateProperties());
+        entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
+        entityManagerFactoryBean.afterPropertiesSet();
+
+        return entityManagerFactoryBean.getObject();
+
     }
 
     private Properties hibernateProperties() {
         Properties properties = new Properties();
-        properties.put("hibernate.hbm2ddl.auto", environment.getProperty("hibernate.hbm2ddl.auto"));
-        properties.put("hibernate.show_sql", environment.getProperty("hibernate.show_sql"));
-        properties.put("hibernate.format_sql", environment.getProperty("hibernate.format_sql"));
-        properties.put("hibernate.generate_statistics", environment.getProperty("hibernate.generate_statistics"));
+        properties.put("hibernate.hbm2ddl.auto", configService.get(Keys.HIBERNATE_HBM2DDL));
+        properties.put("hibernate.show_sql", configService.get(Keys.HIBERNATE_SHOW_SQL));
+        properties.put("hibernate.format_sql", configService.get(Keys.HIBERNATE_FORMAT_SQL));
+        properties.put("hibernate.generate_statistics", configService.get(Keys.HIBERNATE_GENERATE_STATISTICS));
         return properties;
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+
+        JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
+        jpaTransactionManager.setEntityManagerFactory(entityManagerFactory());
+        return jpaTransactionManager;
+
     }
 
 
