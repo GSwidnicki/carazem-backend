@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.MultipartConfigElement;
 
 /**
  * Created by RENT on 2016-07-18.
@@ -28,7 +31,7 @@ public class SpringConfig {
     ConfigService configService;
 
     @PostConstruct
-    public Flyway flyway(){
+    public Flyway flyway() {
         Flyway flyway = new Flyway();
         flyway.setDataSource(configService.get(Keys.DB_URL), configService.get(Keys.DB_USER), configService.get(Keys.DB_PASSWORD));
         flyway.migrate();
@@ -40,6 +43,8 @@ public class SpringConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
+        config.addAllowedHeader("*");
+        config.addAllowedOrigin("*");
         config.addAllowedMethod("POST");
         config.addAllowedMethod("GET");
         config.addAllowedMethod("PUT");
@@ -47,4 +52,10 @@ public class SpringConfig {
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
+
+    @Bean
+    public MultipartResolver multipartResolver() {
+        return new CommonsMultipartResolver();
+    }
+
 }
