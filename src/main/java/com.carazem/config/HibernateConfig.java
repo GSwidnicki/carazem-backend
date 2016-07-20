@@ -31,6 +31,12 @@ public class HibernateConfig {
     @Autowired
     ConfigService configService;
 
+    @Autowired
+    private DataSource dataSource;
+
+    @Autowired
+    private LocalContainerEntityManagerFactoryBean entityManagerFactory;
+
     @Bean
     public DataSource dataSource() {
 
@@ -44,19 +50,15 @@ public class HibernateConfig {
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        LocalContainerEntityManagerFactoryBean entityManagerFactory =
-                new LocalContainerEntityManagerFactoryBean();
+        LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
 
         entityManagerFactory.setDataSource(dataSource);
 
-        // Classpath scanning of @Component, @Service, etc annotated class
         entityManagerFactory.setPackagesToScan("com.carazem");
 
-        // Vendor adapter
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         entityManagerFactory.setJpaVendorAdapter(vendorAdapter);
 
-        // Hibernate properties
         Properties additionalProperties = new Properties();
         additionalProperties.put("hibernate.show_sql", configService.get(Keys.HIBERNATE_SHOW_SQL));
         additionalProperties.put("hibernate.show_sql", configService.get(Keys.HIBERNATE_FORMAT_SQL));
@@ -69,10 +71,8 @@ public class HibernateConfig {
 
     @Bean
     public JpaTransactionManager transactionManager() {
-        JpaTransactionManager transactionManager =
-                new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(
-                entityManagerFactory.getObject());
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory.getObject());
         return transactionManager;
     }
 
@@ -80,12 +80,5 @@ public class HibernateConfig {
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
     }
-
-    @Autowired
-    private DataSource dataSource;
-
-    @Autowired
-    private LocalContainerEntityManagerFactoryBean entityManagerFactory;
-
 
 }

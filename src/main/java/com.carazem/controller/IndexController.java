@@ -26,10 +26,6 @@ public class IndexController {
     public String home() {
         System.out.println(configService.get(Keys.SERVER_PORT));
 
-        //Test polaczenia
-        String query = "SELECT schemaname FROM pg_catalog.pg_tables LIMIT 1";
-        System.out.println(entityManager.createNativeQuery(query).getSingleResult().toString());
-
         return "Dziala backend!";
     }
 
