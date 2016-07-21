@@ -1,17 +1,24 @@
 package com.carazem.search;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
+
 
 public class SearchRequestDto {
     private String cityFrom;
     private String cityTo;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date rideDate;
+
+    public SearchRequestDto(){}
 
     public SearchRequestDto(String cityFrom, String cityTo, Date rideDate) {
         this.cityFrom = cityFrom;
         this.cityTo = cityTo;
         this.rideDate = rideDate;
     }
+
 
     public Date getRideDate() {
         return rideDate;

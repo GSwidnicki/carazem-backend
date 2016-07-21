@@ -4,6 +4,7 @@ import com.carazem.search.SearchRequestDto;
 import com.carazem.search.SearchResponseDto;
 import com.carazem.service.RideService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,7 @@ public class SearchController {
     private RideService rideService;
 
     @RequestMapping(value = "/search", method = GET)
-    public List<SearchResponseDto> search(SearchRequestDto searchRequestDto){
+    public List<SearchResponseDto> search( SearchRequestDto searchRequestDto){
         return rideService.searchRides(searchRequestDto);
     }
 
