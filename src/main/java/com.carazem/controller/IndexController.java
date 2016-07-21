@@ -16,8 +16,9 @@ import javax.persistence.PersistenceContext;
  */
 @RestController
 public class IndexController {
+
     @Autowired
-    ConfigService configService;
+    private ConfigService configService;
 
     @RequestMapping("/")
     public String home() {
