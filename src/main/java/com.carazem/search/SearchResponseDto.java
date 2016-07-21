@@ -7,17 +7,17 @@ public class SearchResponseDto {
     private String cityFrom;
     private String cityTo;
     private String date;
-    private String DriverName;
-    private String DriverSurname;
-    private BigInteger Price;
+    private String driverName;
+    private String driverSurname;
+    private BigInteger price;
 
     public SearchResponseDto(String cityFrom, String cityTo, String date, String driverName, String driverSurname, BigInteger price) {
         this.cityFrom = cityFrom;
         this.cityTo = cityTo;
         this.date = date;
-        DriverName = driverName;
-        DriverSurname = driverSurname;
-        Price = price;
+        this.driverName = driverName;
+        this.driverSurname = driverSurname;
+        this.price = price;
     }
 
     public String getCityFrom() {
@@ -45,26 +45,26 @@ public class SearchResponseDto {
     }
 
     public String getDriverName() {
-        return DriverName;
+        return driverName;
     }
 
     public void setDriverName(String driverName) {
-        DriverName = driverName;
+        this.driverName = driverName;
     }
 
     public String getDriverSurname() {
-        return DriverSurname;
+        return driverSurname;
     }
 
     public void setDriverSurname(String driverSurname) {
-        DriverSurname = driverSurname;
+        this.driverSurname = driverSurname;
     }
 
     public BigInteger getPrice() {
-        return Price;
+        return price;
     }
 
     public void setPrice(BigInteger price) {
-        Price = price;
+        this.price = price;
     }
 }
