@@ -2,6 +2,7 @@ package com.carazem.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.math.BigInteger;
@@ -9,6 +10,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "rides")
+@ToString
 public class Ride {
 
     public Ride() {}
@@ -27,8 +29,8 @@ public class Ride {
     @Column(name = "ride_date")
     @Setter @Getter private Date rideDate;
 
-    @Column(name = "driver_id")
-    @JoinColumn(name = "user_id")
+    @OneToOne
+    @JoinColumn(name = "driver_id")
     @Setter @Getter private User driver;
 
     @Column(name = "seats")
