@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 import java.util.Date;
 
 @Entity
@@ -32,6 +33,9 @@ public class Ride {
 
     @Column(name = "seats")
     @Setter @Getter private int seats;
+
+    @Column(name = "price")
+    @Setter @Getter private BigInteger price;
 
 }
 
