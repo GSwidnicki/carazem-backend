@@ -1,5 +1,7 @@
 package com.carazem.search;
 
+import com.carazem.model.Ride;
+
 import java.math.BigInteger;
 import java.util.Date;
 

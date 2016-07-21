@@ -3,6 +3,8 @@ package com.carazem.service;
 import com.carazem.dao.RideDao;
 import com.carazem.dao.UserDao;
 import com.carazem.model.Ride;
+import com.carazem.search.SearchRequestDto;
+import com.carazem.search.SearchResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,7 @@ public class RideService {
 
     public List<SearchResponseDto> searchRides(SearchRequestDto searchRequestDto) {
        return rideDao.findByCityFromAndCityToAndRideDateGreaterThan(searchRequestDto.getCityFrom(), searchRequestDto.getCityTo(), searchRequestDto.getRideDate())
-               .stream().map(r->new SearchResponseDto(r)).collect(toList());
+               .stream().map(SearchResponseDto::new).collect(toList());
     }
 
 }
