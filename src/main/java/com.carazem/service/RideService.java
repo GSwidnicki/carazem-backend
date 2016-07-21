@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class RideService {
@@ -17,11 +20,9 @@ public class RideService {
     @Autowired
     private UserDao userDao;
 
-    public List<Ride> searchRides() {
-
-        List<Ride> rideList = rideDao.findAll();
-
-        return rideList;
+    public List<SearchResponseDto> searchRides(SearchRequestDto searchRequestDto) {
+       return rideDao.findByCityFromAndCityToAndRideDateGreaterThan(searchRequestDto.getCityFrom(), searchRequestDto.getCityTo(), searchRequestDto.getRideDate())
+               .stream().map(r->new SearchResponseDto(r)).collect(toList());
     }
 
 }

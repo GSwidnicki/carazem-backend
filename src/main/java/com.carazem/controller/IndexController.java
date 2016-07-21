@@ -25,7 +25,6 @@ public class IndexController {
     @RequestMapping("/")
     public String home() {
         System.out.println(configService.get(Keys.SERVER_PORT));
-        rideService.searchRides().forEach(System.out::println);
 
         return "Dziala backend!";
     }
