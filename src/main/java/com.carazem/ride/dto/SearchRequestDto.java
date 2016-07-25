@@ -1,4 +1,4 @@
-package com.carazem.rideDto;
+package com.carazem.ride.dto;
 
 import org.springframework.format.annotation.DateTimeFormat;
 

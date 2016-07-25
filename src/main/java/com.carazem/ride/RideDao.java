@@ -1,6 +1,6 @@
-package com.carazem.dao;
+package com.carazem.ride;
 
-import com.carazem.model.Ride;
+import com.carazem.ride.Ride;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

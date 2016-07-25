@@ -1,4 +1,4 @@
-package com.carazem.model;
+package com.carazem.user;
 
 import lombok.Getter;
 import lombok.Setter;

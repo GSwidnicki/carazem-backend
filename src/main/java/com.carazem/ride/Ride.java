@@ -1,5 +1,6 @@
-package com.carazem.model;
+package com.carazem.ride;
 
+import com.carazem.user.User;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

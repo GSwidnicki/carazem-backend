@@ -1,6 +1,5 @@
-package com.carazem.service;
+package com.carazem.user;
 
-import com.carazem.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

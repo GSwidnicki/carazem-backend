@@ -1,11 +1,8 @@
-package com.carazem.controller;
+package com.carazem.ride;
 
-import com.carazem.model.Ride;
-import com.carazem.rideDto.SearchRequestDto;
-import com.carazem.rideDto.SearchResponseDto;
-import com.carazem.service.RideService;
+import com.carazem.ride.dto.SearchRequestDto;
+import com.carazem.ride.dto.SearchResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -1,16 +1,11 @@
-package com.carazem.controller;
+package com.carazem;
 
 import com.carazem.config.ConfigService;
 import com.carazem.config.Keys;
-import com.carazem.service.RideService;
-import org.hibernate.SessionFactory;
+import com.carazem.ride.RideService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 
 @RestController

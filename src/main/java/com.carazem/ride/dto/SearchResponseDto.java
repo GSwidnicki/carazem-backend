@@ -1,6 +1,6 @@
-package com.carazem.rideDto;
+package com.carazem.ride.dto;
 
-import com.carazem.model.Ride;
+import com.carazem.ride.Ride;
 
 import java.math.BigInteger;
 import java.util.Date;

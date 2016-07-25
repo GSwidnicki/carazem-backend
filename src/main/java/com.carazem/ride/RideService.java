@@ -1,10 +1,8 @@
-package com.carazem.service;
+package com.carazem.ride;
 
-import com.carazem.dao.RideDao;
-import com.carazem.dao.UserDao;
-import com.carazem.model.Ride;
-import com.carazem.rideDto.SearchRequestDto;
-import com.carazem.rideDto.SearchResponseDto;
+import com.carazem.ride.dto.SearchRequestDto;
+import com.carazem.ride.dto.SearchResponseDto;
+import com.carazem.user.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

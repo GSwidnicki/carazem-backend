@@ -1,6 +1,5 @@
-package com.carazem.dao;
+package com.carazem.user;
 
-import com.carazem.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
