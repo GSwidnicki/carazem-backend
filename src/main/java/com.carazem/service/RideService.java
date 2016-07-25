@@ -27,4 +27,8 @@ public class RideService {
                .stream().map(SearchResponseDto::new).collect(toList());
     }
 
+    public void addRide(Ride ride) {
+        rideDao.save(ride);
+    }
+
 }
