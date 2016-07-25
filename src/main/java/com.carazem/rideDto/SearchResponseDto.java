@@ -1,4 +1,4 @@
-package com.carazem.search;
+package com.carazem.rideDto;
 
 import com.carazem.model.Ride;
 

@@ -2,14 +2,12 @@ package com.carazem.service;
 
 import com.carazem.dao.RideDao;
 import com.carazem.dao.UserDao;
-import com.carazem.model.Ride;
-import com.carazem.search.SearchRequestDto;
-import com.carazem.search.SearchResponseDto;
+import com.carazem.rideDto.SearchRequestDto;
+import com.carazem.rideDto.SearchResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
