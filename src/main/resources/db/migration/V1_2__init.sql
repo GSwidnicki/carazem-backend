@@ -1,7 +1,0 @@
-ALTER TABLE rides
-ADD COLUMN
-price BIGINT;
-
-ALTER TABLE rides
-ADD COLUMN
-description VARCHAR(1000);

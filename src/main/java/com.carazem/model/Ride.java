@@ -3,6 +3,7 @@ package com.carazem.model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigInteger;
@@ -27,6 +28,7 @@ public class Ride {
     @Setter @Getter private String cityTo;
 
     @Column(name = "ride_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Setter @Getter private Date rideDate;
 
     @OneToOne
