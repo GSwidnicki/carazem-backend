@@ -19,18 +19,19 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  */
 
 @RestController
+@RequestMapping(value = "/rides")
 public class RideController {
 
     @Autowired
     private RideService rideService;
 
-    @RequestMapping(value = "/search", method = GET)
-    public List<SearchResponseDto> search( SearchRequestDto searchRequestDto){
+    @RequestMapping(method = GET)
+    public List<SearchResponseDto> search(SearchRequestDto searchRequestDto) {
         return rideService.searchRides(searchRequestDto);
     }
 
-    @RequestMapping(value = "/addride", method = POST)
-    public Ride addRide(Ride ride){
+    @RequestMapping(method = POST)
+    public Ride addRide(Ride ride) {
         rideService.addRide(ride);
         return ride;
     }
