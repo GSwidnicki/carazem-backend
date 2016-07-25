@@ -19,7 +19,7 @@ public class Ride {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ride_id")
+    @Column(name = "id")
     @Setter @Getter private Long id;
 
     @Column(name = "city_from")
