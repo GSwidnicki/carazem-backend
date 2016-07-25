@@ -2,6 +2,7 @@ package com.carazem.service;
 
 import com.carazem.dao.RideDao;
 import com.carazem.dao.UserDao;
+import com.carazem.model.Ride;
 import com.carazem.rideDto.SearchRequestDto;
 import com.carazem.rideDto.SearchResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
