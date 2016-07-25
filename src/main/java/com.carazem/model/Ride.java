@@ -39,8 +39,8 @@ public class Ride {
     @Column(name = "price")
     @Setter @Getter private BigInteger price;
 
-    @Column(name = "desc")
-    @Setter @Getter private String desc;
+    @Column(name = "description")
+    @Setter @Getter private String description;
 
 }
 
