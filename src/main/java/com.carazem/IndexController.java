@@ -1,23 +1,21 @@
-package com.carazem.controller;
+package com.carazem;
 
 import com.carazem.config.ConfigService;
 import com.carazem.config.Keys;
-import org.hibernate.SessionFactory;
+import com.carazem.ride.RideService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
-/**
- * Created by RENT on 2016-07-18.
- */
 @RestController
 public class IndexController {
+
     @Autowired
-    ConfigService configService;
+    private ConfigService configService;
+
+    @Autowired
+    private RideService rideService;
 
     @RequestMapping("/")
     public String home() {
