@@ -32,7 +32,6 @@ public class RideController {
 
     @RequestMapping(method = POST)
     public Ride addRide(Ride ride) {
-        rideService.addRide(ride);
-        return ride;
+        return rideService.addRide(ride);
     }
 }
