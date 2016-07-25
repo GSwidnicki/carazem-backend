@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -34,4 +35,8 @@ public class RideService {
         return ride;
     }
 
+    public boolean rideExists(Ride ride) {
+        Ride fetched = rideDao.findByDriverIdAndRideDate(ride.getDriver().getId(), ride.getRideDate());
+        return fetched!=null;
+    }
 }

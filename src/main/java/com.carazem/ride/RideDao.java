@@ -13,4 +13,5 @@ public interface RideDao extends JpaRepository<Ride, Long>{
     List<Ride>findByCityFromAndCityToAndRideDateGreaterThan(String cityFrom, String cityTo, Date rideDate);
 
 
+    Ride findByDriverIdAndRideDate(Long id, Date rideDate);
 }
