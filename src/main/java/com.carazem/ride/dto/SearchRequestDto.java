@@ -4,13 +4,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 
 public class SearchRequestDto {
     private String cityFrom;
     private String cityTo;
-    //@DateTimeFormat(pattern = "yyyy-MM-dd")
     private Timestamp rideDate;
 
     public SearchRequestDto(){}

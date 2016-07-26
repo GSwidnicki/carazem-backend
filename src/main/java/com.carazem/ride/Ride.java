@@ -37,7 +37,6 @@ public class Ride {
     private String cityTo;
 
     @Column(name = "ride_date")
-    //@DateTimeFormat(pattern = "yyyy-MM-dd")
     @Setter
     @Getter
     private Timestamp rideDate;
