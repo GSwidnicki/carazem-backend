@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface UserRideDao extends JpaRepository<Ride, Long> {
-    List<Ride> findByCityFromAndCityToAndRideDateGreaterThanAndDriver(String cityFrom, String cityTo, Date rideDate, User driver);
+    List<Ride> findByDriverId(Long id);
 }

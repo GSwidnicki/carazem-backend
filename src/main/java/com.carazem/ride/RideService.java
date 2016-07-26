@@ -3,8 +3,6 @@ package com.carazem.ride;
 import com.carazem.config.SecurityService;
 import com.carazem.ride.dto.SearchRequestDto;
 import com.carazem.ride.dto.SearchResponseDto;
-import com.carazem.ride.dto.SearchUserRequestDto;
-import com.carazem.ride.dto.SearchUserResponseDto;
 import com.carazem.user.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +27,11 @@ public class RideService {
     private SecurityService securityService;
 
     public List<SearchResponseDto> searchRides(SearchRequestDto searchRequestDto) {
-        return rideDao.findByCityFromAndCityToAndRideDateGreaterThan(searchRequestDto.getCityFrom(), searchRequestDto.getCityTo(), searchRequestDto.getRideDate())
+        if(searchRequestDto.getUserId()==null) {
+            return rideDao.findByCityFromAndCityToAndRideDateGreaterThan(searchRequestDto.getCityFrom(), searchRequestDto.getCityTo(), searchRequestDto.getRideDate())
+                    .stream().map(SearchResponseDto::new).collect(toList());
+        }
+        return userRideDao.findByDriverId(searchRequestDto.getUserId())
                 .stream().map(SearchResponseDto::new).collect(toList());
     }
 
@@ -39,8 +41,4 @@ public class RideService {
         return ride;
     }
 
-    public List<SearchUserResponseDto> searchUserRides(SearchUserRequestDto searchUserRequestDto) {
-        return userRideDao.findByCityFromAndCityToAndRideDateGreaterThanAndDriver(searchUserRequestDto.getCityFrom(), searchUserRequestDto.getCityTo(), searchUserRequestDto.getRideDate(), searchUserRequestDto.getDriver())
-                .stream().map(SearchUserResponseDto::new).collect(toList());
-    }
 }
