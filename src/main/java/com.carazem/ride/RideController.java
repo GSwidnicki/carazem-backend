@@ -2,6 +2,8 @@ package com.carazem.ride;
 
 import com.carazem.ride.dto.SearchRequestDto;
 import com.carazem.ride.dto.SearchResponseDto;
+import com.carazem.ride.dto.SearchUserRequestDto;
+import com.carazem.ride.dto.SearchUserResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,4 +33,10 @@ public class RideController {
     public Ride addRide(Ride ride) {
         return rideService.addRide(ride);
     }
+
+    @RequestMapping(value = "/{id}", method = GET)
+    public List<SearchUserResponseDto> search(SearchUserRequestDto searchUserRequestDto) {
+        return rideService.searchUserRides(searchUserRequestDto);
+    }
+
 }
