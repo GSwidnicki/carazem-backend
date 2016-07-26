@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -28,7 +29,7 @@ public class RideController {
     }
 
     @RequestMapping(method = POST)
-    public Ride addRide(Ride ride) {
-        return rideService.addRide(ride);
+    public void addRide(Ride ride) {
+         rideService.addRide(ride);
     }
 }

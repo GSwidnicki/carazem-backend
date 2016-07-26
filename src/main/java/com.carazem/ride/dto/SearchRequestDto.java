@@ -2,29 +2,31 @@ package com.carazem.ride.dto;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+
+import java.sql.Timestamp;
 import java.util.Date;
 
 
 public class SearchRequestDto {
     private String cityFrom;
     private String cityTo;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date rideDate;
+    //@DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Timestamp rideDate;
 
     public SearchRequestDto(){}
 
-    public SearchRequestDto(String cityFrom, String cityTo, Date rideDate) {
+    public SearchRequestDto(String cityFrom, String cityTo, Timestamp rideDate) {
         this.cityFrom = cityFrom;
         this.cityTo = cityTo;
         this.rideDate = rideDate;
     }
 
 
-    public Date getRideDate() {
+    public Timestamp getRideDate() {
         return rideDate;
     }
 
-    public void setRideDate(Date rideDate) {
+    public void setRideDate(Timestamp rideDate) {
         this.rideDate = rideDate;
     }
 
