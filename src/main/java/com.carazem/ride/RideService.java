@@ -4,6 +4,7 @@ import com.carazem.config.SecurityService;
 import com.carazem.ride.dto.SearchRequestDto;
 import com.carazem.ride.dto.SearchResponseDto;
 import com.carazem.user.UserDao;
+import com.carazem.web.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,4 +41,9 @@ public class RideService {
         Ride fetched = rideDao.findByDriverIdAndRideDate(ride.getDriver().getId(), ride.getRideDate());
         return fetched!=null;
     }
+
+//    public List<SearchResponseDto> searchRides(SearchRequestDto searchRequestDto, Pageable pageable) {
+//        List<SearchResponseDto> rides = rideDao.
+//        return rides;
+//    }
 }

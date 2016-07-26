@@ -5,9 +5,13 @@ package com.carazem.web;
  */
 public class Pageable {
 
+    private enum sortType {ASC, DESC};
+
     private int page;
 
     private int size;
+
+    private sortType sortDir;
 
     public int offset(){
         return page * size;
@@ -27,5 +31,13 @@ public class Pageable {
 
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public sortType getSortDir() {
+        return sortDir;
+    }
+
+    public void setSortDir(sortType sortDir) {
+        this.sortDir = sortDir;
     }
 }
