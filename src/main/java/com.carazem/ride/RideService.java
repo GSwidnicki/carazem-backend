@@ -36,6 +36,7 @@ public class RideService {
     }
 
     public boolean rideExists(Ride ride) {
+        ride.setDriver(userDao.getOne(securityService.currentUserId()));
         Ride fetched = rideDao.findByDriverIdAndRideDate(ride.getDriver().getId(), ride.getRideDate());
         return fetched!=null;
     }

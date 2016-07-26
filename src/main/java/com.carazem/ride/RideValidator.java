@@ -1,9 +1,15 @@
 package com.carazem.ride;
 
+import com.carazem.config.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
+
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.util.Date;
 
 @Component
 public class RideValidator implements Validator{
@@ -18,14 +24,20 @@ public class RideValidator implements Validator{
 
     @Override
     public void validate(Object target, Errors errors) {
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cityFrom", Keys.RIDE_ORIGIN_EMPTY);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cityTo", Keys.RIDE_DESTINATION_EMPTY);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "seats", Keys.RIDE_SEATS_EMPTY);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "price", Keys.RIDE_PRICE_EMPTY);
+
         Ride ride = (Ride) target;
 
-
         if(rideService.rideExists(ride)) {
-            errors.reject("Przejazd istnieje"); //TODO
+            errors.reject(Keys.RIDE_EXISTS);
         }
 
-        //TODO - date in future
+        if(ride.getRideDate().toInstant().isBefore(Instant.now())){
+            errors.reject(Keys.RIDE_IN_THE_PAST);
+        }
 
     }
 }
