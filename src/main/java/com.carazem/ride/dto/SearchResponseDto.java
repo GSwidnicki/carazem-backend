@@ -3,18 +3,19 @@ package com.carazem.ride.dto;
 import com.carazem.ride.Ride;
 
 import java.math.BigInteger;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class SearchResponseDto {
 
     private String cityFrom;
     private String cityTo;
-    private Date rideDate;
+    private java.sql.Timestamp rideDate;
     private String driverName;
     private String driverSurname;
     private BigInteger price;
 
-    public SearchResponseDto(String cityFrom, String cityTo, Date rideDate, String driverName, String driverSurname, BigInteger price) {
+    public SearchResponseDto(String cityFrom, String cityTo, Timestamp rideDate, String driverName, String driverSurname, BigInteger price) {
         this.cityFrom = cityFrom;
         this.cityTo = cityTo;
         this.rideDate = rideDate;
@@ -45,11 +46,11 @@ public class SearchResponseDto {
         this.cityTo = cityTo;
     }
 
-    public Date getRideDate() {
+    public Timestamp getRideDate() {
         return rideDate;
     }
 
-    public void setRideDate(Date rideDate) {
+    public void setRideDate(Timestamp rideDate) {
         this.rideDate = rideDate;
     }
 
