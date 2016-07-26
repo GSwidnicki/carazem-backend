@@ -20,9 +20,12 @@ public class RideValidator implements Validator{
     public void validate(Object target, Errors errors) {
         Ride ride = (Ride) target;
 
+
         if(rideService.rideExists(ride)) {
             errors.reject("Przejazd istnieje"); //TODO
         }
+
+        //TODO - date in future
 
     }
 }
