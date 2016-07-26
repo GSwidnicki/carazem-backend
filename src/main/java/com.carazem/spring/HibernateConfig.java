@@ -1,6 +1,7 @@
-package com.carazem.config;
+package com.carazem.spring;
 
 import com.carazem.config.ConfigService;
+import com.carazem.config.Keys;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +20,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -33,7 +35,6 @@ public class HibernateConfig {
 
     @Bean
     public DataSource dataSource() {
-
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(configService.get(Keys.DB_DRIVER));
         dataSource.setUrl(configService.get(Keys.DB_URL));
@@ -55,8 +56,8 @@ public class HibernateConfig {
 
         Properties additionalProperties = new Properties();
         additionalProperties.put("hibernate.show_sql", configService.get(Keys.HIBERNATE_SHOW_SQL));
-        additionalProperties.put("hibernate.show_sql", configService.get(Keys.HIBERNATE_FORMAT_SQL));
-        additionalProperties.put("hibernate.show_sql", configService.get(Keys.HIBERNATE_GENERATE_STATISTICS));
+        additionalProperties.put("hibernate.format_sql", configService.get(Keys.HIBERNATE_FORMAT_SQL));
+        additionalProperties.put("hibernate.generate_statistics", configService.get(Keys.HIBERNATE_GENERATE_STATISTICS));
         additionalProperties.put("hibernate.hbm2ddl.auto", configService.get(Keys.HIBERNATE_HBM2DDL));
         entityManagerFactory.setJpaProperties(additionalProperties);
 
