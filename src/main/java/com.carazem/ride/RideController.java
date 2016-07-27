@@ -2,8 +2,9 @@ package com.carazem.ride;
 
 import com.carazem.ride.dto.SearchRequestDto;
 import com.carazem.ride.dto.SearchResponseDto;
-import com.carazem.web.Pageable;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -28,9 +29,8 @@ public class RideController {
     private RideValidator rideValidator;
 
     @RequestMapping(method = GET)
-    public List<SearchResponseDto> search(SearchRequestDto searchRequestDto) {
-
-        return rideService.searchRides(searchRequestDto);
+    public List<SearchResponseDto> search(SearchRequestDto searchRequestDto, Pageable pageable) {
+        return rideService.searchRides(searchRequestDto, pageable);
     }
 
     @RequestMapping(method = POST)
