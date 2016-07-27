@@ -1,9 +1,10 @@
-package com.carazem.config;
+package com.carazem.auth;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class SecurityService {
+
     public Long currentUserId() {
         return new Long(1);
     }
