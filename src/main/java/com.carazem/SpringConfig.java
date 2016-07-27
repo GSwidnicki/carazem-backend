@@ -4,6 +4,8 @@ package com.carazem;
 import com.carazem.auth.AuthFilter;
 import com.carazem.config.ConfigService;
 import com.carazem.config.Keys;
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,6 +54,14 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
         return FirebaseAuth.getInstance();
     }
 
+    @Bean
+    public Cloudinary cloudinary(){
+        Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+                "cloud_name", "sda",
+                "api_key", "181517735687221",
+                "api_secret", "0adNkmGUEGcv0FBzs2OmfQRz6R0"));
+        return cloudinary;
+    }
 
     @Bean
     public CorsFilter corsFilter() {
