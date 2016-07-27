@@ -28,16 +28,18 @@ public class RideValidator implements Validator{
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cityTo", Keys.RIDE_DESTINATION_EMPTY);
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "seats", Keys.RIDE_SEATS_EMPTY);
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "price", Keys.RIDE_PRICE_EMPTY);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "rideDate", Keys.RIDE_DATE_EMPTY);
 
         Ride ride = (Ride) target;
 
         if(rideService.rideExists(ride)) {
             errors.reject(Keys.RIDE_EXISTS);
         }
-
-        if(ride.getRideDate().toInstant().isBefore(Instant.now())){
-            errors.reject(Keys.RIDE_IN_THE_PAST);
+        
+        if(ride.getRideDate()!=null) {
+            if (ride.getRideDate().toInstant().isBefore(Instant.now())) {
+                errors.reject(Keys.RIDE_IN_THE_PAST);
+            }
         }
-
     }
 }

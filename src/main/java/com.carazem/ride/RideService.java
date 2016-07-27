@@ -42,8 +42,5 @@ public class RideService {
         return fetched!=null;
     }
 
-//    public List<SearchResponseDto> searchRides(SearchRequestDto searchRequestDto, Pageable pageable) {
-//        List<SearchResponseDto> rides = rideDao.
-//        return rides;
-//    }
+
 }
