@@ -27,9 +27,6 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import javax.annotation.PostConstruct;
 import java.io.FileNotFoundException;
 
-/**
- * Created by RENT on 2016-07-18.
- */
 @SpringBootApplication
 @PropertySource("classpath:application.properties")
 @EnableWebSecurity

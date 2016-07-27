@@ -15,10 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-/**
- * Created by RENT on 2016-07-26.
- */
-public class AuthFilter extends OncePerRequestFilter{
+public class AuthFilter extends OncePerRequestFilter {
 
     private static final String AUTH_TOKEN = "X-AUTH-TOKEN";
     private FirebaseAuth firebaseAuth;

@@ -1,7 +1,7 @@
 package com.carazem.auth;
 
-import lombok.Setter;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,14 +9,15 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.util.Arrays;
 import java.util.Collection;
 
-/**
- * Created by RENT on 2016-07-26.
- */
 public class Auth implements Authentication {
 
 
-    @Getter @Setter private boolean authenticated = true;
-    @Getter @Setter private String email;
+    @Getter
+    @Setter
+    private boolean authenticated = true;
+    @Getter
+    @Setter
+    private String email;
 
     public Auth(String email) {
         this.email = email;
