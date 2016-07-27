@@ -31,7 +31,7 @@ public class RideController {
     private RideValidator rideValidator;
 
     @RequestMapping(method = GET)
-    public List<SearchResponseDto> search(SearchRequestDto searchRequestDto, Pageable pageable) {
+    public List<SearchResponseDto> search(SearchRequestDto searchRequestDto) {
 
         return rideService.searchRides(searchRequestDto);
     }

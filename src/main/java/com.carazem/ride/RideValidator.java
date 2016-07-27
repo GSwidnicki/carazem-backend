@@ -35,7 +35,7 @@ public class RideValidator implements Validator{
         if(rideService.rideExists(ride)) {
             errors.reject(Keys.RIDE_EXISTS);
         }
-        
+
         if(ride.getRideDate()!=null) {
             if (ride.getRideDate().toInstant().isBefore(Instant.now())) {
                 errors.reject(Keys.RIDE_IN_THE_PAST);
