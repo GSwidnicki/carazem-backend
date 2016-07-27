@@ -1,15 +1,23 @@
 package com.carazem;
 
 
+import com.carazem.auth.AuthFilter;
 import com.carazem.config.ConfigService;
 import com.carazem.config.Keys;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import org.flywaydb.core.Flyway;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -17,26 +25,33 @@ import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.MultipartConfigElement;
+import java.io.FileNotFoundException;
 
-/**
- * Created by RENT on 2016-07-18.
- */
-@EnableAutoConfiguration
-@ComponentScan("com.carazem")
+@SpringBootApplication
 @PropertySource("classpath:application.properties")
-public class SpringConfig {
+@EnableWebSecurity
+public class SpringConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     ConfigService configService;
 
     @PostConstruct
-    public Flyway flyway() {
+    public void init() throws FileNotFoundException {
         Flyway flyway = new Flyway();
         flyway.setDataSource(configService.get(Keys.DB_URL), configService.get(Keys.DB_USER), configService.get(Keys.DB_PASSWORD));
         flyway.migrate();
-        return flyway;
     }
+
+    @Bean
+    public FirebaseAuth firebaseAuth() {
+        FirebaseOptions options = new FirebaseOptions.Builder()
+                .setServiceAccount(this.getClass().getResourceAsStream(configService.get(Keys.FIREBASE_KEY_PATH)))
+                .setDatabaseUrl(configService.get(Keys.FIREBASE_DB_URL))
+                .build();
+        FirebaseApp.initializeApp(options);
+        return FirebaseAuth.getInstance();
+    }
+
 
     @Bean
     public CorsFilter corsFilter() {
@@ -56,6 +71,20 @@ public class SpringConfig {
     @Bean
     public MultipartResolver multipartResolver() {
         return new CommonsMultipartResolver();
+    }
+
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers(HttpMethod.GET, "/rides").permitAll()
+                //.antMatchers("/**").authenticated() TODO uncomment after testing
+                .and()
+                .addFilterBefore(new AuthFilter(firebaseAuth()), BasicAuthenticationFilter.class)
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
 }
