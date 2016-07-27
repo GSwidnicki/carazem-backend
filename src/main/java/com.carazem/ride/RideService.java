@@ -1,6 +1,6 @@
 package com.carazem.ride;
 
-import com.carazem.config.SecurityService;
+import com.carazem.auth.SecurityService;
 import com.carazem.ride.dto.SearchRequestDto;
 import com.carazem.ride.dto.SearchResponseDto;
 import com.carazem.user.UserDao;
@@ -26,8 +26,8 @@ public class RideService {
     private SecurityService securityService;
 
     public List<SearchResponseDto> searchRides(SearchRequestDto searchRequestDto) {
-       return rideDao.findByCityFromAndCityToAndRideDateGreaterThan(searchRequestDto.getCityFrom(), searchRequestDto.getCityTo(), searchRequestDto.getRideDate())
-               .stream().map(SearchResponseDto::new).collect(toList());
+        return rideDao.findByCityFromAndCityToAndRideDateGreaterThan(searchRequestDto.getCityFrom(), searchRequestDto.getCityTo(), searchRequestDto.getRideDate())
+                .stream().map(SearchResponseDto::new).collect(toList());
     }
 
     public Ride addRide(Ride ride) {
