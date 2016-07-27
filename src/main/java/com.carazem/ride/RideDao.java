@@ -9,10 +9,9 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
-public interface RideDao extends JpaRepository<Ride, Long>{
+public interface RideDao extends JpaRepository<Ride, Long> {
 
-    List<Ride>findByCityFromAndCityToAndRideDateGreaterThan(String cityFrom, String cityTo, Timestamp rideDate);
-
+    List<Ride> findByCityFromAndCityToAndRideDateGreaterThan(String cityFrom, String cityTo, Timestamp rideDate);
 
 
 }

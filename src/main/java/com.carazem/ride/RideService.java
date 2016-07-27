@@ -27,7 +27,7 @@ public class RideService {
     private SecurityService securityService;
 
     public List<SearchResponseDto> searchRides(SearchRequestDto searchRequestDto) {
-        if(searchRequestDto.getUserId()==null) {
+        if (searchRequestDto.getUserId() == null) {
             return rideDao.findByCityFromAndCityToAndRideDateGreaterThan(searchRequestDto.getCityFrom(), searchRequestDto.getCityTo(), searchRequestDto.getRideDate())
                     .stream().map(SearchResponseDto::new).collect(toList());
         }
@@ -40,7 +40,6 @@ public class RideService {
         rideDao.save(ride);
         return ride;
     }
-
 
 
 }
