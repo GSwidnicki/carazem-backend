@@ -10,8 +10,10 @@ public class SearchRequestDto {
     private String cityFrom;
     private String cityTo;
     private Timestamp rideDate;
+    private Long userId;
 
-    public SearchRequestDto(){}
+    public SearchRequestDto() {
+    }
 
     public SearchRequestDto(String cityFrom, String cityTo, Timestamp rideDate) {
         this.cityFrom = cityFrom;
@@ -19,6 +21,17 @@ public class SearchRequestDto {
         this.rideDate = rideDate;
     }
 
+    public SearchRequestDto(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
     public Timestamp getRideDate() {
         return rideDate;

@@ -20,13 +20,20 @@ public class RideService {
     private RideDao rideDao;
 
     @Autowired
+    private UserRideDao userRideDao;
+
+    @Autowired
     private UserDao userDao;
 
     @Autowired
     private SecurityService securityService;
 
     public List<SearchResponseDto> searchRides(SearchRequestDto searchRequestDto) {
-        return rideDao.findByCityFromAndCityToAndRideDateGreaterThan(searchRequestDto.getCityFrom(), searchRequestDto.getCityTo(), searchRequestDto.getRideDate())
+        if (searchRequestDto.getUserId() == null) {
+            return rideDao.findByCityFromAndCityToAndRideDateGreaterThan(searchRequestDto.getCityFrom(), searchRequestDto.getCityTo(), searchRequestDto.getRideDate())
+                    .stream().map(SearchResponseDto::new).collect(toList());
+        }
+        return userRideDao.findByDriverId(searchRequestDto.getUserId())
                 .stream().map(SearchResponseDto::new).collect(toList());
     }
 

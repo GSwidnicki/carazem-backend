@@ -1,6 +1,7 @@
 package com.carazem.ride;
 
 import com.carazem.ride.Ride;
+import com.carazem.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,9 +9,9 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
-public interface RideDao extends JpaRepository<Ride, Long>{
+public interface RideDao extends JpaRepository<Ride, Long> {
 
-    List<Ride>findByCityFromAndCityToAndRideDateGreaterThan(String cityFrom, String cityTo, Timestamp rideDate);
+    List<Ride> findByCityFromAndCityToAndRideDateGreaterThan(String cityFrom, String cityTo, Timestamp rideDate);
 
 
     Ride findByDriverIdAndRideDate(Long id, Timestamp rideDate);
