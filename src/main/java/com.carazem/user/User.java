@@ -10,40 +10,48 @@ import java.util.Date;
 @Table(name = "users")
 public class User {
 
-    public User() {}
+    public User() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @Setter @Getter private Long id;
+    @Setter
+    @Getter
+    private Long id;
 
     @Column(name = "email")
-    @Setter @Getter private String email;
-
-    @Column(name = "password")
-    @Setter @Getter private String password;
-
-    @Column(name = "first_name")
-    @Setter @Getter private String firstName;
-
-    @Column(name = "second_name")
-    @Setter @Getter private String secondName;
+    @Setter
+    @Getter
+    private String email;
 
     @Column(name = "phone_number")
-    @Setter @Getter private String phoneNumber;
+    @Setter
+    @Getter
+    private String phoneNumber;
 
     @Column(name = "hometown")
-    @Setter @Getter private String hometown;
+    @Setter
+    @Getter
+    private String hometown;
 
     @Column(name = "birth_date")
-    @Setter @Getter private Date birthDate;
+    @Setter
+    @Getter
+    private Date birthDate;
 
     @Column(name = "description")
-    @Setter @Getter private String description;
+    @Setter
+    @Getter
+    private String description;
 
     @Column(name = "car_model")
-    @Setter @Getter private String carModel;
+    @Setter
+    @Getter
+    private String carModel;
 
     @Column(name = "photo_url")
-    @Setter @Getter private String photoUrl;
+    @Setter
+    @Getter
+    private String photoUrl;
 }

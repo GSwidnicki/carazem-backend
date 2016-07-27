@@ -5,5 +5,10 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface UserDao extends JpaRepository<User, Long>{
+public interface UserDao extends JpaRepository<User, Long> {
+
+    int countByEmail(String email);
+
+    Long findByEmail(String email);
+
 }

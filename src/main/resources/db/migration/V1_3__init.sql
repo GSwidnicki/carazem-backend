@@ -1,2 +1,2 @@
-ALTER TABLE rides
-ALTER COLUMN ride_date TYPE TIMESTAMP;
+ALTER TABLE users
+DROP COLUMN password, DROP COLUMN first_name, DROP COLUMN second_name;
