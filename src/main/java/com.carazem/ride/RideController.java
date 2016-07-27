@@ -28,4 +28,5 @@ public class RideController {
     public void addRide(Ride ride) {
         rideService.addRide(ride);
     }
+
 }
