@@ -31,7 +31,6 @@ public class RideController {
     @RequestMapping(method = GET)
     public List<SearchResponseDto> search(SearchRequestDto searchRequestDto, Pageable pageable) {
         return rideService.searchRides(searchRequestDto, pageable);
-        //return rideService.searchRides(searchRequestDto);
     }
 
     @RequestMapping(method = POST)
