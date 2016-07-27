@@ -4,10 +4,12 @@ import com.carazem.auth.SecurityService;
 import com.carazem.ride.dto.SearchRequestDto;
 import com.carazem.ride.dto.SearchResponseDto;
 import com.carazem.user.UserDao;
+import com.carazem.web.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -33,5 +35,12 @@ public class RideService {
         rideDao.save(ride);
         return ride;
     }
+
+    public boolean rideExists(Ride ride) {
+        ride.setDriver(userDao.getOne(securityService.currentUserId()));
+        Ride fetched = rideDao.findByDriverIdAndRideDate(ride.getDriver().getId(), ride.getRideDate());
+        return fetched!=null;
+    }
+
 
 }
