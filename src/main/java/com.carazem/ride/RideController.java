@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,7 +38,7 @@ public class RideController {
     }
 
     @RequestMapping(method = POST)
-    public void addRide(@Validated Ride ride) {
+    public void addRide(@RequestBody @Validated Ride ride) {
          rideService.addRide(ride);
     }
 
