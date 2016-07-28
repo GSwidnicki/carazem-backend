@@ -80,7 +80,8 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/rides").permitAll()
-                //.antMatchers("/**").authenticated() TODO uncomment after testing
+                .antMatchers(HttpMethod.GET, "/login").authenticated() // TODO remove after testing
+                //.antMatchers("/**").authenticated() // TODO uncomment after testing
                 .and()
                 .addFilterBefore(new AuthFilter(firebaseAuth()), BasicAuthenticationFilter.class)
                 .sessionManagement()
