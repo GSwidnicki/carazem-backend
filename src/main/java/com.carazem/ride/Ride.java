@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.math.BigInteger;
 import java.sql.Timestamp;
+import java.util.List;
 
 
 @Entity
@@ -21,7 +22,7 @@ public class Ride {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "ride_id")
     @Setter
     @Getter
     private Long id;
@@ -62,5 +63,10 @@ public class Ride {
     @Getter
     private String description;
 
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(name = "user_ride", joinColumns = { @JoinColumn(name = "ride_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
+    @Setter
+    @Getter
+    private List<User> passangerList;
 }
 

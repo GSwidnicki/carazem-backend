@@ -3,10 +3,12 @@ package com.carazem.ride;
 import com.carazem.auth.SecurityService;
 import com.carazem.ride.dto.SearchRequestDto;
 import com.carazem.ride.dto.SearchResponseDto;
+import com.carazem.user.User;
 import com.carazem.user.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -50,4 +52,19 @@ public class RideService {
     }
 
 
+    public void assignToRide(long id) {
+        Ride ride = rideDao.findOne(id);
+        User passanger = userDao.findOne(securityService.currentUserId());
+        if(ride.getDriver()!=passanger && ride.getSeats() > ride.getPassangerList().size()) {
+            ride.getPassangerList().add(passanger);
+            rideDao.save(ride);
+        }
+    }
+
+//    public List<User> showRideUser() {
+//        Ride ride = rideDao.findOne(1L);
+//        System.out.println(ride.getPassangers().toString());
+//        List<User> users = ride.getPassangers();
+//        return users;
+//    }
 }

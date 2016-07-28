@@ -3,19 +3,19 @@ package com.carazem.ride;
 import com.carazem.ride.dto.SearchRequestDto;
 import com.carazem.ride.dto.SearchResponseDto;
 
+import com.carazem.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 
 @RestController
@@ -41,5 +41,11 @@ public class RideController {
     @InitBinder("ride")
     public void initRideValidator(WebDataBinder binder) {
         binder.addValidators(rideValidator);
+    }
+
+    @RequestMapping(value = "/r/{id}", method = GET)
+    public void assignToRide(@PathVariable Long id) {
+        System.out.println(id);
+        rideService.assignToRide(id);
     }
 }
