@@ -55,8 +55,19 @@ public class RideService {
     public void assignToRide(long id) {
         Ride ride = rideDao.findOne(id);
         User passanger = userDao.findOne(securityService.currentUserId());
-        if(ride.getDriver()!=passanger && ride.getSeats() > ride.getPassangerList().size()) {
+        if(!ride.getPassangerList().contains(passanger)&& ride.getDriver()!=passanger && ride.getSeats() > ride.getPassangerList().size()) {
             ride.getPassangerList().add(passanger);
+            rideDao.save(ride);
+            System.out.println("wewnętrzna");
+        }
+        System.out.println("zewnętrzna");
+    }
+
+    public void unassingFromRide(long id) {
+        Ride ride = rideDao.findOne(id);
+        User passanger = userDao.findOne(securityService.currentUserId());
+        if(ride.getPassangerList().contains(passanger)) {
+            ride.getPassangerList().remove(passanger);
             rideDao.save(ride);
         }
     }

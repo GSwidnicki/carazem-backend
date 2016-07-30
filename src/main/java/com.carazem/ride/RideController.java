@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-import static org.springframework.web.bind.annotation.RequestMethod.PUT;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 
 @RestController
@@ -43,9 +41,16 @@ public class RideController {
         binder.addValidators(rideValidator);
     }
 
-    @RequestMapping(value = "/r/{id}", method = GET)
+    @RequestMapping(value = "/{id}", method = PUT)
     public void assignToRide(@PathVariable Long id) {
-        System.out.println(id);
+        System.out.println("PUT");
         rideService.assignToRide(id);
     }
+
+    @RequestMapping(value = "/{id}", method = DELETE)
+    public void unassignToRide(@PathVariable Long id) {
+        System.out.println("DELETE");
+        rideService.unassingFromRide(id);
+    }
+
 }

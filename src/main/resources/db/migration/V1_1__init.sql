@@ -31,8 +31,8 @@ FOREIGN KEY (driver_id) REFERENCES users (user_id)
 CREATE TABLE user_ride
 (
 ride_id BIGINT NOT NULL,
-passanger_id BIGINT NOT NULL,
-PRIMARY KEY (ride_id, passanger_id),
+user_id BIGINT NOT NULL,
+PRIMARY KEY (ride_id, user_id),
 FOREIGN KEY (ride_id) REFERENCES rides(ride_id) ON DELETE CASCADE,
-FOREIGN KEY (passanger_id) REFERENCES users(user_id) ON DELETE CASCADE
+FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE
 );

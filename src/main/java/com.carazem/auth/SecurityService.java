@@ -6,6 +6,6 @@ import org.springframework.stereotype.Component;
 public class SecurityService {
 
     public Long currentUserId() {
-        return new Long(3);
+        return new Long(1);
     }
 }
