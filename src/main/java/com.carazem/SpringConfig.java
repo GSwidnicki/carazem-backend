@@ -1,6 +1,5 @@
 package com.carazem;
 
-
 import com.carazem.auth.AuthFilter;
 import com.carazem.config.ConfigService;
 import com.carazem.config.Keys;
@@ -62,6 +61,7 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
                 "api_secret", "0adNkmGUEGcv0FBzs2OmfQRz6R0"));
         return cloudinary;
     }
+
 
     @Bean
     public CorsFilter corsFilter() {

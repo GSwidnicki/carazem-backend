@@ -38,19 +38,18 @@ public class RideController {
 
     @RequestMapping(method = GET)
     public List<SearchResponseDto> search(SearchRequestDto searchRequestDto) {
-
         return rideService.searchRides(searchRequestDto);
     }
 
     @RequestMapping(method = POST)
     public void addRide(@RequestBody @Validated Ride ride) {
-         rideService.addRide(ride);
+        rideService.addRide(ride);
     }
 
     @RequestMapping(value = "/addFile", method = GET)
     public void addFile() {
 
-        File toUpload = new File("C:\\Users\\RENT\\Desktop\\javalogo.png");
+        File toUpload = new File("C:\\Users\\RENT\\Desktop\\HTML.jpg");
         try {
             Map uploadResult = cloudinary.uploader().upload(toUpload, ObjectUtils.emptyMap());
         } catch (IOException e) {

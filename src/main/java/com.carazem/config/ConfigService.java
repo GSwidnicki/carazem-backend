@@ -6,9 +6,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
-/**
- * Created by RENT on 2016-07-18.
- */
 @Component
 public class ConfigService {
 

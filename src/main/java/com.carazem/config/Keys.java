@@ -25,4 +25,8 @@ public class Keys {
     public static final String RIDE_PRICE_EMPTY = "ride.price.empty";
     public static final String RIDE_DATE_EMPTY = "ride.date.empty";
 
+    public static final String CLOUD_NAME = "sda";
+    public static final String API_KEY = "181517735687221";
+    public static final String API_SECRET = "0adNkmGUEGcv0FBzs2OmfQRz6R0";
+
 }
