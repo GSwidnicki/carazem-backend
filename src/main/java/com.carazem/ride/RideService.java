@@ -6,9 +6,7 @@ import com.carazem.ride.dto.SearchResponseDto;
 import com.carazem.user.User;
 import com.carazem.user.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,7 +30,7 @@ public class RideService {
 
     public List<SearchResponseDto> searchRides(SearchRequestDto searchRequestDto, Pageable pageable) {
         if (searchRequestDto.getUserId() == null) {
-            return rideDao.findByCityFromAndCityToAndRideDateGreaterThan(searchRequestDto.getCityFrom(), searchRequestDto.getCityTo(), searchRequestDto.getRideDate(), pageable)
+            return rideDao.findByCityIgnoreCaseFromAndCityToAndRideDateGreaterThan(searchRequestDto.getCityFrom(), searchRequestDto.getCityTo(), searchRequestDto.getRideDate(), pageable)
                     .stream().map(SearchResponseDto::new).collect(toList());
         }
         return userRideDao.findByDriverId(searchRequestDto.getUserId())

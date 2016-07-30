@@ -27,19 +27,19 @@ public class AuthFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
 
-//        String firebaseToken = httpServletRequest.getHeader(AUTH_TOKEN);
-//
-//        if (!StringUtils.isEmpty(firebaseToken)) {
-//            try {
-//                Task<FirebaseToken> task = firebaseAuth.verifyIdToken(firebaseToken);
-//                FirebaseToken result = Tasks.await(task);
-//                Auth auth = new Auth(result.getEmail());
-//                SecurityContextHolder.getContext().setAuthentication(auth);
-//            } catch (InterruptedException | ExecutionException e) {
-//                e.printStackTrace();
-//            }
-//        }
-        //filterChain.doFilter(httpServletRequest, httpServletResponse);
+        String firebaseToken = httpServletRequest.getHeader(AUTH_TOKEN);
+
+        if (!StringUtils.isEmpty(firebaseToken)) {
+            try {
+                Task<FirebaseToken> task = firebaseAuth.verifyIdToken(firebaseToken);
+                FirebaseToken result = Tasks.await(task);
+                Auth auth = new Auth(result.getEmail());
+                SecurityContextHolder.getContext().setAuthentication(auth);
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+        filterChain.doFilter(httpServletRequest, httpServletResponse);
 
     }
 }

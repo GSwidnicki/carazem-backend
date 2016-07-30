@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface RideDao extends JpaRepository<Ride, Long> {
 
-    List<Ride> findByCityFromAndCityToAndRideDateGreaterThan(String cityFrom, String cityTo, Timestamp rideDate, Pageable pageable);
+    List<Ride> findByCityIgnoreCaseFromAndCityToAndRideDateGreaterThan(String cityFrom, String cityTo, Timestamp rideDate, Pageable pageable);
 
 
     Ride findByDriverIdAndRideDate(Long id, Timestamp rideDate);

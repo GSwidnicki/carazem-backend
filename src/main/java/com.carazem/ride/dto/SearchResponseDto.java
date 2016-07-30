@@ -28,6 +28,9 @@ public class SearchResponseDto {
         this.cityFrom = ride.getCityFrom();
         this.cityTo = ride.getCityTo();
         this.rideDate = ride.getRideDate();
+        this.price = ride.getPrice();
+        this.driverName = ride.getDriver().getFirstName();
+        this.driverSurname = ride.getDriver().getSecondName();
     }
 
     public String getCityFrom() {

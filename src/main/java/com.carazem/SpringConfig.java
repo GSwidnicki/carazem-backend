@@ -42,15 +42,15 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
         flyway.migrate();
     }
 
-//    @Bean
-//    public FirebaseAuth firebaseAuth() {
-//        FirebaseOptions options = new FirebaseOptions.Builder()
-//                .setServiceAccount(this.getClass().getResourceAsStream(configService.get(Keys.FIREBASE_KEY_PATH)))
-//                .setDatabaseUrl(configService.get(Keys.FIREBASE_DB_URL))
-//                .build();
-//        FirebaseApp.initializeApp(options);
-//        return FirebaseAuth.getInstance();
-//    }
+    @Bean
+    public FirebaseAuth firebaseAuth() {
+        FirebaseOptions options = new FirebaseOptions.Builder()
+                .setServiceAccount(this.getClass().getResourceAsStream(configService.get(Keys.FIREBASE_KEY_PATH)))
+                .setDatabaseUrl(configService.get(Keys.FIREBASE_DB_URL))
+                .build();
+        FirebaseApp.initializeApp(options);
+        return FirebaseAuth.getInstance();
+    }
 
 
     @Bean
@@ -82,7 +82,7 @@ public class SpringConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/rides").permitAll()
                 //.antMatchers("/**").authenticated() TODO uncomment after testing
                 .and()
-                //.addFilterBefore(new AuthFilter(firebaseAuth()), BasicAuthenticationFilter.class)
+                .addFilterBefore(new AuthFilter(firebaseAuth()), BasicAuthenticationFilter.class)
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
